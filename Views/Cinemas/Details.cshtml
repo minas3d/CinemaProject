@@ -1,0 +1,19 @@
+@model Cinema_project.Models.Cinema
+
+<h2>Cinema Details</h2>
+
+<div>
+    <h4>@Model.Name</h4>
+    <p><strong>Location:</strong> @Model.Location</p>
+
+    @if(!string.IsNullOrEmpty(Model.Img))
+    {
+        <p><strong>Image:</strong></p>
+        <img src="@Model.Img" alt="@Model.Name" width="300" />
+    }
+</div>
+
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</p>

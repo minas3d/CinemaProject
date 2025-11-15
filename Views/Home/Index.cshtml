@@ -1,0 +1,95 @@
+﻿@using Cinema_project.Models
+@model IEnumerable<Movie>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<header class="bg-dark py-5 mb-4">
+    <div class="container text-center text-white">
+        <h1 class="display-5">Welcome to Cinema</h1>
+        <p class="lead text-white-50">Discover movies, actors, categories and more</p>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Filter Section -->
+    <form method="get" class="row mb-4 p-3 bg-light rounded">
+
+        <!-- Movie Name -->
+        <div class="col-md-3">
+            <input type="text" class="form-control" name="MovieName" placeholder="Movie Name" />
+        </div>
+
+        <!-- Category -->
+        <div class="col-md-3">
+            <select name="CategoryId" class="form-control">
+                <option value="">-- Select Category --</option>
+                @if (ViewBag.Categories != null)
+                {
+                    foreach (var cat in ViewBag.Categories)
+                    {
+                        <option value="@cat.Id">@cat.Name</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <!-- Cinema -->
+        <div class="col-md-3">
+            <select name="CinemaId" class="form-control">
+                <option value="">-- Select Cinema --</option>
+                @if (ViewBag.Cinemas != null)
+                {
+                    foreach (var c in ViewBag.Cinemas)
+                    {
+                        <option value="@c.Id">@c.Name</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <button class="btn btn-dark w-100">Filter</button>
+        </div>
+
+    </form>
+
+    <!-- Movies List -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card h-100">
+
+                    <img src="~/img/@item.SubImg"
+                         class="card-img-top"
+                         alt="@item.Name"
+                         style="height:300px;object-fit:cover;" />
+
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@item.Name</h5>
+
+                        <p class="text-muted mb-1">Category: @item.Category?.Name</p>
+                        <p class="text-muted mb-1">Cinema: @item.Cinema?.Name</p>
+
+                        <p class="fw-bold">Price: @item.Price EGP</p>
+
+                        <p class="text-muted">@item.DateTime.ToString("yyyy-MM-dd")</p>
+                    </div>
+
+                    <div class="card-footer bg-transparent text-center">
+                        <a asp-controller="Movies" asp-action="Details" asp-route-id="@item.Id"
+                           class="btn btn-outline-dark">
+                            Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>

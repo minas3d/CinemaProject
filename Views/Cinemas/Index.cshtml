@@ -1,0 +1,37 @@
+@model IEnumerable<Cinema_project.Models.Cinema>
+
+<h2>Cinemas</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Cinema</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var cinema in Model)
+    {
+        <tr>
+            <td>@cinema.Name</td>
+            <td>@cinema.Location</td>
+            <td>
+                @if(!string.IsNullOrEmpty(cinema.Img))
+                {
+                    <img src="@cinema.Img" alt="@cinema.Name" width="100" />
+                }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@cinema.Id" class="btn btn-sm btn-warning">Edit</a>
+                <a asp-action="Delete" asp-route-id="@cinema.Id" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

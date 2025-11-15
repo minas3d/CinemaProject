@@ -1,0 +1,28 @@
+@model IEnumerable<Cinema_project.Models.Actor>
+
+@{
+    ViewData["Title"] = "Actors";
+}
+
+<div class="container">
+    <h2>Actors</h2>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach(var actor in Model)
+        {
+            <div class="col">
+                <div class="card h-100 text-center">
+                    @if(!string.IsNullOrEmpty(actor.Image))
+                    {
+                        <img src="@actor.Image" class="card-img-top" style="height:200px;object-fit:cover;" />
+                    }
+                    <div class="card-body">
+                        <h5>@actor.FullName</h5>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-action="Details" asp-route-id="@actor.Id" class="btn btn-outline-dark">Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

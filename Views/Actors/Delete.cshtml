@@ -1,0 +1,18 @@
+@model Cinema_project.Models.Actor
+
+<h2>Delete Actor</h2>
+
+<h4>Are you sure you want to delete this actor?</h4>
+<div>
+    <h5>@Model.FullName</h5>
+    @if(!string.IsNullOrEmpty(Model.Image))
+    {
+        <img src="@Model.Image" alt="@Model.FullName" width="150" />
+    }
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

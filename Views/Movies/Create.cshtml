@@ -1,0 +1,43 @@
+﻿@model Cinema_project.Models.Movie
+
+@{
+    ViewData["Title"] = "Create Movie";
+}
+
+<h1>Create Movie</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateTime"></label>
+        <input asp-for="DateTime" class="form-control" type="date" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SubImg"></label>
+        <input asp-for="SubImg" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Category</label>
+        <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label>Cinema</label>
+        <select asp-for="CinemaId" asp-items="ViewBag.Cinemas" class="form-control"></select>
+    </div>
+
+    <button class="btn btn-success">Save</button>
+    <a class="btn btn-secondary" asp-action="Index">Back</a>
+</form>
