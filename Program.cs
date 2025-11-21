@@ -17,6 +17,11 @@ namespace Cinema_project
             // ✅ Add MVC
             builder.Services.AddControllersWithViews();
 
+            // ✅ Register Repositories for DI
+            builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+            builder.Services.AddScoped<IActorRepository, ActorRepository>();
+            builder.Services.AddScoped<ICinemaRepository, CinemaRepository>();
+
             var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())
@@ -40,4 +45,3 @@ namespace Cinema_project
         }
     }
 }
-

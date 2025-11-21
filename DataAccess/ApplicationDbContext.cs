@@ -1,4 +1,4 @@
-﻿ 
+﻿
 using Cinema_project.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,4 +26,3 @@ namespace Cinema_project.DataAccess
         }
     }
 }
-
