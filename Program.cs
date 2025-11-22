@@ -9,15 +9,13 @@ namespace Cinema_project
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // ✅ Register DbContext
+           
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             );
 
-            // ✅ Add MVC
             builder.Services.AddControllersWithViews();
 
-            // ✅ Register Repositories for DI
             builder.Services.AddScoped<IMovieRepository, MovieRepository>();
             builder.Services.AddScoped<IActorRepository, ActorRepository>();
             builder.Services.AddScoped<ICinemaRepository, CinemaRepository>();
